@@ -1,0 +1,17 @@
+import itertools
+
+def lex(words,n):
+  strings=itertools.product(range(0,len(words)),repeat=n)
+  lst=[]
+  for char in strings:
+    lst.append(char)
+  lst.sort()
+  values=[]
+  for i in lst:
+    values.append(''.join([words[i[j]] for j in range(len (i))]))
+  return values
+
+words=sorted(input().strip().split())
+n=int(input())
+for comb in lex(words,n):
+  print(comb)
