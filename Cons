@@ -1,0 +1,45 @@
+def cons(ar):
+    string=[]
+    b=[]
+    a=[]
+    g=[]
+    t=[]
+    c=[]
+    otherm=[]
+    for i in ar:
+        if i.startswith(">"):
+            b.append(i[1:])
+        else:
+            string.append(i)
+    transpose=[[string[x][y] for x in range(len(string))] for y in range(len(string[0]))]
+    doublea=["A:"]
+    doublec=["C:"]
+    doubleg=["G:"]
+    doublet=["T:"]
+    bases=["A","C","G","T"]
+    cons=[]
+    for j in transpose:
+        a.append(j.count("A"))
+        doublea.append(j.count("A"))
+        c.append(j.count("C"))
+        doublec.append(j.count("C"))
+        g.append(j.count("G"))
+        doubleg.append(j.count("G"))
+        t.append(j.count("T"))
+        doublet.append(j.count("T"))
+    counttranspose=[[bases[a][b] for a in range(len(bases))] for b in range (len(bases[0]))]
+    for z in counttranspose:
+        otherm.append(z.index(max(z)))
+    for e in otherm:
+        if e==0:
+            cons.append("A")
+        if e==1:
+            cons.append("C")
+        if e==2:
+            cons.append("G")
+        if e==3:
+            cons.append("T")
+    return ("".join(map(str,cons))," ".join(map(str,doublea))," ".join(map(str,doublec))," ".join(map(str,doubleg))," ".join(map(str,doublet)))
+
+nucls=list(map(str,input().split()))
+print(*cons(nucls), sep="\n")
