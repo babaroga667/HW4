@@ -1,0 +1,14 @@
+x=input()
+rev=x[::-1]
+new=rev.split()
+dictt={}
+
+dictt["A"]="T"
+dictt["T"]="A"
+dictt["C"]="G"
+dictt["G"]="C"
+
+lst=[]
+for base in rev:
+  lst.append(dictt[base])
+print("".join(lst))
