@@ -1,0 +1,41 @@
+import os
+os.getcwd()
+os.chdir("C:\\Users\\Hena\\Downloads")
+
+def percentage(ar):
+  gcone=ar.count("G")
+  gctwo=ar.count("C")
+  perc=((gcone+gctwo)/(len(ar)))*100
+  return perc
+
+def fasta(a):
+    
+    dicty={}
+    name=a.strip().split(">")
+    for a in name:
+        if len(a)==0:
+            continue
+        segm=a.split()
+        beg=segm[0]
+        bases="".join(segm[1:])
+        
+        dicty[beg]=bases
+    return dicty
+
+f=open("rosalind_gc.txt")
+text=f.read()
+f.close()
+    
+all=fasta(text)
+
+
+all=dict([(k, percentage(v)) for k, v in all.items()])
+    
+maxk=None
+maxv=0
+for k,v in all.items():
+    if v>maxv:
+        maxk=k
+        maxv=v
+print(maxk)
+print(maxv)
