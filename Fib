@@ -1,0 +1,13 @@
+def bunnies(x,y):
+  #x-months
+  #y-rabbit number
+  if x==0:
+    return 0
+  elif x==1:
+    return 1
+  else:
+    #fn=fn-1+fn-2
+    return (bunnies(x-1,y)+y*bunnies(x-2,y))
+
+print(bunnies(36,3))
+  
