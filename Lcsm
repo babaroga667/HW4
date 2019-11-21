@@ -1,0 +1,36 @@
+def check(sub, strings):
+  if len(strings)<len(sub) or sub not in strings:
+    return False
+  return True
+
+def lcs(strings):
+  sub=""
+  for beg in range (len(strings[0])):
+    for end in range(len(strings[0]),beg,-1):
+      if end-beg<=len(sub):
+        break
+      elif check(strings[0][beg:end],strings):
+        sub=strings[0][beg:end]
+  return sub
+
+import os
+os.getcwd()
+os.chdir("C:\\Users\\Hena\\Downloads")
+dicty = {}
+s = ''
+with open('rosalind_lcsm (1).txt', encoding='utf-8') as text:
+        for line in text:
+                if line[0] == '>':
+                        s = line.rstrip()
+                        dicty[s] = ''
+                        continue
+                else:
+                        dicty[s] += (line.rstrip()).upper()
+ 
+
+lst = []
+for s in dicty:
+                            lst.append(dicty[s])
+print(lcs(lst))
+with open('lcsm.txt', 'w') as output_data:
+    output_data.write(lcs(lst))
