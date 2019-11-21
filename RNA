@@ -1,0 +1,5 @@
+x=input()
+def rna(x):
+  return  x.replace("T","U")
+new=rna(x)
+print(new)
