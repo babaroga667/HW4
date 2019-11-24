@@ -1,0 +1,49 @@
+
+def incr(string):
+  a=[0]*len(string)
+  b=[0]*len(string)
+
+  lenght=1
+  a[0]=0
+  for i in range (1,len(string)):
+    left=0
+    right=lenght
+    if string[a[right-1]]<string[i]:
+      num=right
+    else:
+      while right-left>1:
+        center=(left+right)//2
+        if string[a[center-1]]<string[i]:
+          left=center
+        else:
+          right=center
+      num=left
+    b[i]=a[num-1]
+    if num==lenght or string[i]<string[a[num]]:
+      a[num]=i
+      lenght=max(lenght,num+1)
+  lst=[]
+  char=a[lenght-1]
+  for z in range(lenght):
+    lst.append(string[char])
+    char=b[char]
+  return lst[::-1]
+
+def decr(string):
+  c=[0]*len(string)
+  for i in range(len(string) - 2, -1, -1):
+        for j in range(len(string) - 1, i, -1):
+            if string[i] > string[j] and c[i] <= c[j]:
+                c[i] = c[j] + 1
+  m=max(c)
+  lst=[]
+  for z in range(len(c)):
+    if m==c[z]:
+      lst.append(string[z])
+      m=m-1
+  return lst
+a=input().split()
+x=incr(a)
+y=decr(a)
+print(" ".join(map(str,x)))
+print(" ".join(map(str,y)))
