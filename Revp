@@ -1,0 +1,29 @@
+def reverse(string):
+  rev=""
+  for i in string:
+    rev=i+rev
+  return rev
+
+def translate(string):
+    dicty={"A":"T","C":"G","G":"C","T":"A"}
+    l=[]
+    for i in reverse(string):
+        d=dicty[i]
+        l.append(d)
+    return "".join(l)
+
+def pal(string):
+    lst=[]
+    for j in range (len(string)):
+        for z in range (4,12):
+            if j+z>len(string):
+                continue
+            beg=string[j:j+z]
+            end=translate(beg)
+            if beg==end:
+                lst.append((j+1,z))
+    return lst
+
+ros="TCAATGCATGCGGGTCTATATGCAT"
+final=pal(ros)
+print ("\n".join([" ".join(map(str, r)) for r in final]))
